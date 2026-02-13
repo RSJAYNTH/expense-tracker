@@ -48,6 +48,10 @@ A simple and efficient expense tracker application built with Node.js and Expres
     docker compose up --build
     ```
 
+## Deployment
+
+For instructions on how to set up automatic deployment to your Ubuntu server, please refer to [DEPLOYMENT.md](DEPLOYMENT.md).
+
 ## License
 
 This project is licensed under the ISC License.

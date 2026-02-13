@@ -1,0 +1,38 @@
+name: Deploy Docker App
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Copy repository contents via scp
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        source: "."
+        target: "/home/${{ secrets.USERNAME }}/app"
+
+    - name: Executing remote ssh commands using key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd /home/${{ secrets.USERNAME }}/app
+          # Build and start the containers
+          # -d: Detached mode
+          # --build: Build images before starting containers
+          docker compose up -d --build
+          # Prune unused images to save space (optional but recommended)
+          docker image prune -f
