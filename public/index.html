@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinetic Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-gradients">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="app-container">
+        <header>
+            <h1>Expense Tracker</h1>
+            <p>Simplicity in motion.</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Summary Card -->
+            <section class="card summary-card fade-in-up">
+                <h2>Total Balance</h2>
+                <div class="total-amount" id="total-amount">$0.00</div>
+                <div class="category-pills" id="category-summary">
+                    <!-- Pills injected via JS -->
+                </div>
+            </section>
+
+            <!-- Action Form -->
+            <section class="card form-card fade-in-up delay-100">
+                <h2 id="form-title">Add Expense</h2>
+                <form id="expense-form">
+                    <input type="hidden" id="edit-id">
+
+                    <div class="input-group">
+                        <label>Amount</label>
+                        <input type="number" id="amount" step="0.01" placeholder="0.00" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Description</label>
+                        <input type="text" id="description" placeholder="What is this for?" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Category</label>
+                        <select id="category" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="Food">Food</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Misc">Misc</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="submit-btn">Add Expense</button>
+                        <button type="button" id="cancel-btn" class="hidden">Cancel</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- List Section -->
+            <section class="card list-card fade-in-up delay-200">
+                <h2>Recent Activity</h2>
+                <ul id="expense-list">
+                    <!-- Items injected here -->
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden">Action Successful</div>
+    <script src="script.js"></script>
+</body>
+
+</html>
